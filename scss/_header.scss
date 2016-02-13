@@ -1,0 +1,45 @@
+.wrapMenu {
+  width: 1000px;
+  height: 100px;
+  margin: auto;
+  color: $primaryColor;
+  h1 {
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 30px;
+  }
+  p {
+    font-family: Arial;
+    font-style: Regular;
+    font-size: 18px;
+  }
+}
+
+
+/*============================================================================
+------------------------ Media query -----------------------------------------
+******************************************************************************/
+
+/*------------------------------------*\
+                $TABLET DEVICES
+\*------------------------------------*/
+@media screen and (max-width: 991px) {
+    .wrapMenu {
+      width: 100%;
+      height: 85px;
+      padding: 0px 15px;
+      h1 {}
+      p { }
+    }
+}
+
+/*------------------------------------*\
+                $SMARTPHONE DEVICES
+\*------------------------------------*/
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .wrapMenu {
+      margin: 15px 25px 15px 0px;
+      padding: 0px 15px;
+      h1, p { }
+    }
+}
