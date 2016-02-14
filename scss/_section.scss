@@ -9,11 +9,8 @@
         $wrap of the phothos
 \*------------------------------------*/
 .wrapPhotos__box {
-  width: 780px;
-  margin-left: 110px;
-  margin-bottom: 30px;
   display: flex;
-  //justify-content: space-between;
+  justify-content: center;
 }
 /*------------------------------------*\
         $wrap of img and footer
@@ -21,6 +18,7 @@
 .box__photo {
   width: 240px;
   height: 380px;
+  margin: 0px 15px 0px 15px;
   img {
     width: 240px;
   }
@@ -49,11 +47,22 @@
 
 
 /*------------------------------------*\
-          $second box with gutter
+          $Show img
 \*------------------------------------*/
-.box__photo.box__photoGutter {
-    margin: 0px 30px;
+
+.wrapImg {
+  background-color: rgba(6, 6, 6, 0.7);
+  width: 500px;
+  margin: auto;
+  height: 600px;
+  text-align: center;
 }
+
+
+
+
+
+
 
 
 /*============================================================================

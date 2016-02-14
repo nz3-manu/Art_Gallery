@@ -63,7 +63,7 @@ function Gallery () {
       "imageurl": "assets/images/the_dream.jpg"
     }]
   this.init = function(){
-    var sumNAme = " ";
+    var sumObject = " ";
     var sumTotal = " ";
     var eachThree = " ";
     var full = " ";
@@ -76,13 +76,13 @@ function Gallery () {
      var about = this.information[i].about;
      var imageurl = this.information[i].imageurl;
           full = name + artist + price + about;
-          sumNAme=  sumNAme + "<div class='box__photo'>" + "<img src=" + imageurl + ">"
-          + "<div class='box__footer  box__footer--style' >" + "<h1>" + name + "</h1>" + "<p>" + artist + "<br>" + about
-          + "<br>" + price + "</p>" + "</div>" + "</div>";
+          sumObject=  sumObject + `<div class = 'box__photo'> <img src = "${imageurl}">
+           <div class='box__footer  box__footer--style'>  <h1>${name}</h1> <p>${artist}<br>${about}
+          <br>${price}</p> </div></div>`;
 
-         if ((i+1)%3 == 0) {
-           eachThree = eachThree + "<div class='wrapPhotos__box'>" + sumNAme + "</div>";
-           sumNAme = "";
+         if (0 == (i+1)%3) {
+           eachThree = eachThree + "<div class='wrapPhotos__box'>" + sumObject + "</div>";
+           sumObject = "";
          }
    }
    var target = document.getElementsByClassName('wrapPhotos')[1];
