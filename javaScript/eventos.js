@@ -66,7 +66,6 @@ function Gallery () {
     var sumObject = " ";
     var sumTotal = " ";
     var eachThree = " ";
-    var full = " ";
     var elements = "";
 
    for (var i=0; i<this.information.length; i++) {
@@ -75,18 +74,125 @@ function Gallery () {
      var price = this.information[i].price;
      var about = this.information[i].about;
      var imageurl = this.information[i].imageurl;
-          full = name + artist + price + about;
-          sumObject=  sumObject + `<div class = 'box__photo'> <img src = "${imageurl}">
-           <div class='box__footer  box__footer--style'>  <h1>${name}</h1> <p>${artist}<br>${about}
-          <br>${price}</p> </div></div>`;
+          sumObject=  sumObject + `<div class = 'box__photo'>
+                                        <img id="${i}" src = "${imageurl}">
+                                        <div class='box__footer  box__footer--style'>
+                                            <div id='footer__name'> <h1>${name}</h1> </div>
+                                            <div id='footer__artis'> <p>${artist}</p></div>
+                                            <div id='footer__about'> <p>${about}</p> </div>
+                                            <div id='footer__price'> <p>${price}</p> </div>
+                                        </div>
+                                   </div>`;
 
+    //condition for three each elements
          if (0 == (i+1)%3) {
-           eachThree = eachThree + "<div class='wrapPhotos__box'>" + sumObject + "</div>";
+           eachThree = eachThree + `<div class='wrapPhotos__box'>${sumObject}</div>`;
            sumObject = "";
          }
-   }
-   var target = document.getElementsByClassName('wrapPhotos')[1];
-        target.innerHTML = eachThree;
+
+   } //close for
+
+ //creating div of show information
+   var showInformation = `<div id="wrapImgInfomation">
+                              <div class='wrapImgInfomation__showImg'>
+                              </div>
+                          </div>`;
+
+   // --------------------------- father div ---------------------
+   var target = document.getElementsByClassName('wrapPhotos')[0];
+        target.innerHTML = `${eachThree} ${showInformation}`;
+
+
+   /*==========================================================================
+    ----------------  Click Event description and show big img ----------------
+   ***************************************************************************/
+   var boxInformation = document.querySelectorAll('.box__photo'),
+       boxInformationArray = [].slice.call(boxInformation);
+
+      // creating global variable wrapImgInfomation
+      var showInfomation = document.getElementById('wrapImgInfomation');
+
+      //creating funtion  open of image big
+
+
+      function openDescription (showDescription,objGallery) {
+        var showImg = showInfomation.querySelector(".wrapImgInfomation__showImg"),
+            imgPicture = showDescription.querySelector('img'),
+            footer__name = showDescription.querySelector('#footer__name h1').innerHTML,
+            footer__artis = showDescription.querySelector('#footer__artis p').innerHTML,
+            footer__about = showDescription.querySelector('#footer__about p').innerHTML,
+            footer__price = showDescription.querySelector('#footer__price p').innerHTML,
+            imageId = imgPicture.id;
+
+
+
+            showImg.innerHTML=`<div id='close' class="showImg--btnClose  showImg__btnClose--style"><p> X </p> </div>
+                                <div class="showImg__temp">
+                                    <div class="temp">
+                                          <div id="prevImg" class="temp__wrapArrow">
+                                              <div class="wrapArrowRight__style"></div>
+                                              <div class="wrapArrowRight__style"></div>
+                                          </div>
+                                              <img src = "${imgPicture.src}">
+                                              <div id="nextImg" class="temp__wrapArrow">
+                                                  <div class="wrapArrowLeft__style"></div>
+                                                  <div class="wrapArrowLeft__style"></div>
+                                              </div>
+                                      </div>
+
+                                    <div class='temp__footer'>
+                                        <div id='footer__name'> <h1>${footer__name}</h1> </div>
+                                        <div id='footer__artis'> <p>${footer__artis}</p></div>
+                                        <div id='footer__about'> <p>${footer__about}</p> </div>
+                                        <div id='footer__price'> <p>${footer__price}</p> </div>
+                                    </div>
+                                </div>`
+            showInfomation.style.display = "block";
+
+            //catch close description -------------
+            var close = document.getElementById('close');
+             //creating funtion  close description
+                       close.onclick = function () {
+                         console.log('hola mundo');
+                         showImg.querySelector(".showImg__temp").remove();
+                         showInfomation.style.display="none";
+                       };
+
+          console.log(imgPicture.id);
+
+         /*==========================================================================
+          ----------------  Prev and next  ----------------
+         ***************************************************************************/
+        //-------  image previo
+        var prevImg = document.getElementById('prevImg');
+            prevImg.onclick = function () {
+            }
+
+            var nextImg = document.getElementById('nextImg');
+                nextImg.onclick = function () {
+                  console.log("mostrando ID "+imageId);
+                  var currentlyId = ++imageId + 1;
+                  console.log(currentlyId);
+                  console.log(objGallery.information[currentlyId].imageurl);
+
+                }
+
+
+      } // close openDescription;
+         var _this = this;
+       for (var i=0; i<boxInformationArray.length; i++) {
+            var showDescription = boxInformationArray[i];
+
+            showDescription.onclick = function() {
+                openDescription(this,_this);
+            };
+       }
+
+
+
+
+
+
  };
 }
 

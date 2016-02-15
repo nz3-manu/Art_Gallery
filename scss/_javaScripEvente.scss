@@ -1,0 +1,100 @@
+
+/*------------------------------------*\
+          $Wrap of the img full
+\*------------------------------------*/
+#wrapImgInfomation {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(6, 6, 6, 0.7);
+    display: none;
+    top: 0px;
+    left: 0px;
+}
+.wrapImgInfomation__showImg {
+  width: 1000px;
+  margin: auto;
+  position: relative;
+  text-align: center;
+  padding-top: 1%;
+  img {
+    max-width: 550px;
+  }
+}
+/*------------------------------------*\
+        $Btn close information
+\*------------------------------------*/
+.showImg__btnClose {
+  width: 30px;
+  height: 30px;
+}
+.showImg__btnClose--style {
+  color: #fff;
+  border: 1px solid #fff;
+  position: absolute;
+  cursor: pointer;
+  right: 5px;
+  top: 2px;
+
+  &:hover{
+    background-color: red;
+  }
+  p {
+    padding: 3px;
+  }
+}
+/*------------------------------------*\
+          $temp__footer
+\*------------------------------------*/
+.temp__footer {
+  width: 550px;
+  margin: auto;
+  text-align: justify;
+  color: #ffffff;
+  h1{
+    font-family: arial;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 15px;
+  } p{
+    font-family: arial;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+}
+#footer__price {
+  color: red;
+}
+/*------------------------------------*\
+          $Arrow
+\*------------------------------------*/
+.temp {
+  width: 1000px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.temp__wrapArrow{
+  display: flex;
+  cursor: pointer;
+}
+
+.wrapArrowRight__style{
+  width: 0px;
+  height: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 13px solid #fff;
+  align-self: center;
+}
+// Arrow style left
+.wrapArrowLeft__style  {
+  width: 0px;
+  height: 0px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 13px solid #fff;
+  align-self: center;
+
+}
