@@ -68,16 +68,21 @@
 /*------------------------------------*\
           $Arrow
 \*------------------------------------*/
-.temp {
-  width: 1000px;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.temp__wrapArrow{
+.temp__wrapArrowRight {
   display: flex;
   cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 17%;
+  z-index: 100;
+}
+.temp__wrapArrowLeft {
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 17%;
+  z-index: 100;
 }
 
 .wrapArrowRight__style{
