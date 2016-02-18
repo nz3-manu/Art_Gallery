@@ -1,20 +1,20 @@
 .wrapMenu {
-  width: 1000px;
-  height: 100px;
-  margin: auto;
-  color: $primaryColor;
-  h1 {
-    font-family: Arial;
-    font-weight: bold;
-    font-size: 30px;
-  }
-  p {
-    font-family: Arial;
-    font-style: Regular;
-    font-size: 18px;
-  }
+    width: 1000px;
+    height: 100px;
+    margin: auto;
+    color: $primaryColor;
+    h1 {
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    p {
+        font-family: Arial;
+        font-style: Regular;
+        font-size: 18px;
+    }
 }
-
 
 /*============================================================================
 ------------------------ Media query -----------------------------------------
@@ -25,11 +25,11 @@
 \*------------------------------------*/
 @media screen and (max-width: 991px) {
     .wrapMenu {
-      width: 100%;
-      height: 85px;
-      padding: 0px 15px;
-      h1 {}
-      p { }
+        width: 100%;
+        height: 85px;
+        padding: 0 15px;
+        h1 {}
+        p {}
     }
 }
 
@@ -38,8 +38,9 @@
 \*------------------------------------*/
 @media screen and (min-width: 320px) and (max-width: 767px) {
     .wrapMenu {
-      margin: 15px 25px 15px 0px;
-      padding: 0px 15px;
-      h1, p { }
+        margin: 15px 25px 15px 0;
+        padding: 0 15px;
+        h1,
+        p {}
     }
 }

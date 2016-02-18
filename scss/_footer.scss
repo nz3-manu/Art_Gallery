@@ -1,20 +1,20 @@
 .footer {
-  width: 100%;
-  background-color: $primaryColor;
+    width: 100%;
+    background-color: $primaryColor;
 }
 
 .footer__container {
-  width: 1000px;
-  height: 74px;
-  margin: auto;
-  padding-top: 15px;
-  color: #ffffff;
+    width: 1000px;
+    height: 74px;
+    margin: auto;
+    padding-top: 15px;
+    color: #ffffff;
     p {
-      margin: 0px;
-      padding: 0px;
-      text-align: center;
+        margin: 0;
+        padding: 0;
+        text-align: center;
     }
-  }
+}
 
 /*============================================================================
 ------------------------ Media query -----------------------------------------
@@ -23,14 +23,7 @@
                 $TABLET DEVICES
 \*------------------------------------*/
 @media screen and (max-width: 991px) {
-  .footer__container {
-    width: 100%;
-  }
-}
-
-/*------------------------------------*\
-                $SMARTPHONE DEVICES
-\*------------------------------------*/
-@media screen and (min-width: 320px) and (max-width: 767px) {
-
+    .footer__container {
+        width: 100%;
+    }
 }
