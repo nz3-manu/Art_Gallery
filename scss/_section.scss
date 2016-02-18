@@ -11,13 +11,14 @@
 .wrapPhotos__box {
   display: flex;
   justify-content: center;
+  margin-bottom: 30px
 }
 /*------------------------------------*\
         $wrap of img and footer
 \*------------------------------------*/
 .box__photo {
   width: 240px;
-  height: 380px;
+  height: 392px;
   margin: 0px 15px 0px 15px;
   img {
     width: 240px;
@@ -28,7 +29,7 @@
 \*------------------------------------*/
 .box__footer {
   width: 100%;
-  height: 75px;
+  height: 92px;
 }
 
 .box__footer--style {
@@ -62,20 +63,15 @@
     width: 100%;
     margin-left: 0px;
   }
-  .wrapMenu {
-    width: 100%;
-    height: 85px;
-    h1 {}
-    p { }
-  }
 }
+
 /*------------------------------------*\
             $SMARTPHONE DEVICES
 \*------------------------------------*/
 @media screen and (max-width: 767px) {
     .wrapPhotos__box {
     flex-direction: column;
-    margin-bottom: 0px;
+    align-items: center;
     }
     .box__photo {
       margin: 0px 25px 30px 25px;

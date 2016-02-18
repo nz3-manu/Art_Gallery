@@ -16,54 +16,71 @@
   margin: auto;
   position: relative;
   text-align: center;
-  padding-top: 1%;
+  padding-top: 2%;
   img {
-    max-width: 550px;
+    max-width: 421px;
   }
 }
 /*------------------------------------*\
         $Btn close information
 \*------------------------------------*/
 .showImg__btnClose {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
 }
 .showImg__btnClose--style {
   color: #fff;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   position: absolute;
   cursor: pointer;
   right: 5px;
   top: 2px;
-
+  z-index: 98;
+  text-align: center;
+  padding-top: 5px;
   &:hover{
     background-color: red;
   }
   p {
-    padding: 3px;
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 2px;
   }
 }
 /*------------------------------------*\
           $temp__footer
 \*------------------------------------*/
 .temp__footer {
-  width: 550px;
+  width: 421px;
   margin: auto;
   text-align: justify;
   color: #ffffff;
-  h1{
-    font-family: arial;
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 15px;
-  } p{
-    font-family: arial;
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
+}
+/*------------------------------------*\
+    $temp__footer--Style of the text
+\*------------------------------------*/
+#footer__name {
+  font-family: arial;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+#footer__artis {
+  @extend #footer__name;
+  font-size: 18px;
+}
+#footer__about {
+  font-size: 14px;
+  font-family: arial;
+  font-style: regular;
+  margin-bottom: 15px;
 }
 #footer__price {
-  color: red;
+  font-size: 14px;
+  font-family: arial;
+  font-style: italic;
+  color: #ffcccc;
+  margin-bottom: 15px;
 }
 /*------------------------------------*\
           $Arrow
@@ -72,7 +89,7 @@
   display: flex;
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 17%;
   z-index: 100;
 }
@@ -80,7 +97,7 @@
   display: flex;
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 25%;
   right: 17%;
   z-index: 100;
 }
@@ -101,5 +118,48 @@
   border-bottom: 8px solid transparent;
   border-left: 13px solid #fff;
   align-self: center;
+
+}
+/*============================================================================
+------------------------ Media query -----------------------------------------
+******************************************************************************/
+/*------------------------------------*\
+                $TABLET DEVICES
+\*------------------------------------*/
+@media screen and (max-width: 991px) {
+  /*------------------------------------*\
+            $Wrap of the img full
+  \*------------------------------------*/
+  .wrapImgInfomation__showImg {
+    width: 100%;
+  }
+  /*------------------------------------*\
+          $Btn close information
+  \*------------------------------------*/
+  .showImg__btnClose {
+    width: 30px;
+    height: 30px;
+  }
+  .showImg__btnClose--style {
+    color: #fff;
+    border: 1px solid #fff;
+    position: absolute;
+    cursor: pointer;
+    right: 5px;
+    top: 2px;
+
+    &:hover{
+      background-color: red;
+    }
+    p {
+      padding: 3px;
+    }
+  }
+}
+
+/*------------------------------------*\
+                $SMARTPHONE DEVICES
+\*------------------------------------*/
+@media screen and (min-width: 320px) and (max-width: 767px) {
 
 }
