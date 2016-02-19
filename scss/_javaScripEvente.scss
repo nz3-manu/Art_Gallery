@@ -4,8 +4,7 @@
 #wrapImgInfomation {
     width: 100vw;
     height: 100vh;
-    position: fixed
-    ;
+    position: fixed;
     background-color: rgba(6, 6, 6, 0.7);
     display: none;
     top: 0;
@@ -27,7 +26,7 @@
     }
 }
 /*------------------------------------*\
-          $temp__footer
+  $footer container and text style
 \*------------------------------------*/
 .temp__footer {
     width: 100%;
@@ -35,9 +34,6 @@
     text-align: justify;
     color: #ffffff;
 }
-/*------------------------------------*\
-    $temp__footer--Style of the text
-\*------------------------------------*/
 #footer__name {
     font-family: arial;
     font-weight: bold;
@@ -88,7 +84,7 @@
     text-align: center;
     padding-top: 5px;
     &:hover {
-        background-color: red;
+        background: radial-gradient(circle,rgba(33, 32, 32, 0.72),rgb(101, 101, 101));
     }
     p {
         font-size: 25px;
@@ -99,6 +95,7 @@
 /*------------------------------------*\
           $Arrow
 \*------------------------------------*/
+//--- Arrow  left of the picture
 .temp__wrapArrowRight {
     display: flex;
     cursor: pointer;
@@ -106,7 +103,22 @@
     top: 50%;
     left: 5px;
     z-index: 100;
+    &:hover {
+      .wrapArrowRight__style {
+        border-right: 13px solid rgb(197, 197, 197);
+      }
+    }
 }
+.wrapArrowRight__style {
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 13px solid #fff;
+    align-self: center;
+    &:hover{
+
+    }
+}
+//--- Arrow  left of the picture
 .temp__wrapArrowLeft {
     display: flex;
     cursor: pointer;
@@ -114,20 +126,14 @@
     top: 50%;
     right: 5px;
     z-index: 100;
+    &:hover {
+      .wrapArrowLeft__style {
+        border-left: 13px solid rgb(197, 197, 197);
+      }
+    }
 }
-
-.wrapArrowRight__style {
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 13px solid #fff;
-    align-self: center;
-}
-// Arrow style left
+//-- Arrow style left
 .wrapArrowLeft__style {
-    width: 0;
-    height: 0;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-left: 13px solid #fff;
@@ -156,7 +162,7 @@
 }
 
 /*------------------------------------*\
-                $SMARTPHONE DEVICES
+              $SMARTPHONE DEVICES
 \*------------------------------------*/
 @media screen and (max-width: 767px) {
     .wrapImgInfomation__showImg {
@@ -175,5 +181,4 @@
         top: 50%;
         right: 17px;
     }
-
 }
