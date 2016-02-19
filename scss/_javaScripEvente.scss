@@ -4,7 +4,8 @@
 #wrapImgInfomation {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed
+    ;
     background-color: rgba(6, 6, 6, 0.7);
     display: none;
     top: 0;
@@ -13,7 +14,6 @@
 .wrapImgInfomation__showImg {
     width: 1000px;
     margin: auto;
-    position: relative;
     text-align: center;
     padding-top: 2%;
     margin-bottom: 15px;

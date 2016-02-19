@@ -30,9 +30,9 @@ class Gallery {
                                             <div id='footer__artis'> <p>By ${artist}</p></div>
                                         </div>
                                    </div>`;
-
+                  
             //--- condition for three each elements
-            if (0 == (i + 1) % 3) {
+            if (0 === (i + 1) % 3) {
                 eachThree = eachThree + `<div class='wrapPhotos__box'>${sumObject}</div>`;
                 sumObject = '';
             }
@@ -41,20 +41,20 @@ class Gallery {
 
         //---creating div of show information
         var showInformation = `<div id="wrapImgInfomation">
-                          <div class="wrapImgInfomation__btn">
-                              <div id='close' class="showImg__btnClose  showImg__btnClose--style"> <p>x</p> </div>
-                                   <div id="prevImg" class="temp__wrapArrowRight">
-                                       <div class="wrapArrowRight__style"></div>
-                                       <div class="wrapArrowRight__style"></div>
-                                   </div>
-                                     <div id="nextImg" class="temp__wrapArrowLeft">
-                                         <div class="wrapArrowLeft__style"></div>
-                                         <div class="wrapArrowLeft__style"></div>
-                                     </div>
-                                  <div class='wrapImgInfomation__showImg'>
-                                  </div>
-                              </div>
-                            </div>`;
+                                  <div class="wrapImgInfomation__btn">
+                                      <div id='close' class="showImg__btnClose  showImg__btnClose--style"> <p>x</p> </div>
+                                           <div id="prevImg" class="temp__wrapArrowRight">
+                                               <div class="wrapArrowRight__style"></div>
+                                               <div class="wrapArrowRight__style"></div>
+                                           </div>
+                                             <div id="nextImg" class="temp__wrapArrowLeft">
+                                                 <div class="wrapArrowLeft__style"></div>
+                                                 <div class="wrapArrowLeft__style"></div>
+                                             </div>
+                                            <div class='wrapImgInfomation__showImg'></div>
+                                    </div>
+
+                                </div>`;
 
         //---father div
         var target = document.getElementsByClassName('wrapPhotos')[0];
@@ -101,13 +101,13 @@ class Gallery {
                 }
 
                 function caracterres(chars) {
-                    if (chars == 39) {
+                    if (chars === 39) {
                         nextPicture();
                     }
-                    if (chars == 37) {
+                    if (chars === 37) {
                         prevPicture();
                     }
-                    if (chars == 27) {
+                    if (chars === 27) {
                         closePicture ();
                     }
 
@@ -161,6 +161,7 @@ class Gallery {
                                  </div>
                              </div>`
         } // close this.insertContent
+
 }
 
 var artGallery = new Gallery();
