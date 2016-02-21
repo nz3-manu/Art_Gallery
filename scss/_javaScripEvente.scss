@@ -165,6 +165,9 @@
               $SMARTPHONE DEVICES
 \*------------------------------------*/
 @media screen and (max-width: 767px) {
+  #wrapImgInfomation {
+      height: 100%;
+  }
     .wrapImgInfomation__showImg {
         text-align: center;
         padding: 60px 15px 0;

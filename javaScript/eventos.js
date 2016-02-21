@@ -1,45 +1,95 @@
 'use strict';
 
 class Gallery {
-    constructor() {}
-    init() {
-        fetch("gallery.json").then(information => information.json(), e => {
-            console.log("Obtención fallida", e);
-        }).then(information => this.render(information));
+    constructor() {
+        this.currentIndex = 0;
     }
-    render(information) {
-        this.information = information;
-        var sumObject = '';
-        var sumTotal = '';
-        var eachThree = '';
-        var elements = '';
-        var _this = this;
-        var arrayLength = this.information.length;
+    init(selector, jsonPath) {
+            var initialLoad = {
+                smartphone: {
+                    resolution: 320,
+                    numRows: 1
+                },
+                tablet: {
+                    resolution: 767,
+                    numRows: 2
+                },
+                desktop: {
+                    resolution: 992,
+                    numRows: 3
+                }
+            }
+            this.selector = selector
+            this.jsonPath = jsonPath
 
-        for (var i = 0; i < arrayLength; i++) {
-            var name = this.information[i].name;
-            var artist = this.information[i].artist;
-            var price = this.information[i].price;
-            var about = this.information[i].about;
-            var imageurl = this.information[i].imageurl;
+
+            if (window.screen.width >= initialLoad.desktop.resolution) {
+                this.numRows = 3;
+            } else if (window.screen.width >= initialLoad.tablet.resolution) {
+                this.numRows = 2;
+            } else {
+                this.numRows = 1;
+            }
+            // Json
+            fetch(this.jsonPath).then(information => information.json(), e => {
+                console.log("Obtención fallida", e);
+            }).then(information => {
+                var htmlRow = '';
+                for (var i = 1; i <= this.numRows; i++) {
+                    var supLimit = i * 3;
+                    var infLimit = supLimit - 3;
+                    var row = information.slice(infLimit, supLimit);
+                    htmlRow = `${htmlRow} ${this.renderRow(row)}`;
+                }
+                this.currentIndex = i;
+                // event scroll
+                window.addEventListener('scroll', () => {
+                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                        var supLimit = this.currentIndex * 3;
+                        this.currentIndex++
+                            var infLimit = supLimit - 3;
+                        var row = this.information.slice(infLimit, supLimit);
+                        if (row.length > 0) {
+                          //creating div load.
+                            var target = document.querySelector(this.selector);
+                            var div = document.createElement("div");
+                            div.innerHTML = `<div class='load'> <p> Cargando... </p></div>`
+                            target.appendChild(div);
+
+                            var htmlSingleRow = this.renderRow(row);
+                            var htmlScroll = `${htmlRow} ${htmlSingleRow}`;
+                            this.render(htmlScroll);
+                        }
+                    }
+                });
+                this.information = information;
+                // call Render with  all the result of body
+                this.render(htmlRow);
+            });
+        } // Close init
+        // function renderRow show the div before click event
+    renderRow(row) {
+        var sumObject = '';
+        for (var i = 0; i < 3; i++) {
+            var name = row[i].name;
+            var artist = row[i].artist;
+            var imageurl = row[i].imageurl;
 
             sumObject = sumObject + `<div class = 'box__photo' id="${i}" >
-                                        <img src = "${imageurl}">
-                                        <div class='box__footer  box__footer--style'>
-                                            <div id='footer__name'> <h1>${name}</h1> </div>
-                                            <div id='footer__artis'> <p>By ${artist}</p></div>
-                                        </div>
-                                   </div>`;
-                  
-            //--- condition for three each elements
-            if (0 === (i + 1) % 3) {
-                eachThree = eachThree + `<div class='wrapPhotos__box'>${sumObject}</div>`;
-                sumObject = '';
-            }
+                                      <img src = "${imageurl}">
+                                      <div class='box__footer  box__footer--style'>
+                                          <div id='footer__name'> <h1>${name}</h1> </div>
+                                          <div id='footer__artis'> <p>By ${artist}</p></div>
+                                      </div>
+                                 </div>`;
 
         } //close for
+        return `<div class='wrapPhotos__box'>${sumObject}</div>`;
+    }
 
-        //---creating div of show information
+    render(htmlRow) {
+        var _this = this;
+        //---creating div of show information (wrapImgInfomation), and btn(next,prev  and close)
         var showInformation = `<div id="wrapImgInfomation">
                                   <div class="wrapImgInfomation__btn">
                                       <div id='close' class="showImg__btnClose  showImg__btnClose--style"> <p>x</p> </div>
@@ -56,9 +106,10 @@ class Gallery {
 
                                 </div>`;
 
-        //---father div
-        var target = document.getElementsByClassName('wrapPhotos')[0];
-        target.innerHTML = `${eachThree} ${showInformation}`;
+        //--- firts div (este es el que el usurai crea, se pasa el parametro que el usuario ponga)
+        var target = document.querySelector(this.selector);
+        //--- insert html
+        target.innerHTML = `${htmlRow} ${showInformation}`;
 
         //************************* Click Event, show the description and show big img *****************
 
@@ -66,6 +117,7 @@ class Gallery {
         var boxInformationArray = [].slice.call(boxInformation);
         var showImg = document.querySelector(".wrapImgInfomation__showImg");
         var showInfomation = document.getElementById('wrapImgInfomation');
+        var arrayLength = this.information.length;
         //---- Running inside of Array (boxInformationArray)
         for (var i = 0; i < boxInformationArray.length; i++) {
             var showDescription = boxInformationArray[i];
@@ -108,7 +160,7 @@ class Gallery {
                         prevPicture();
                     }
                     if (chars === 27) {
-                        closePicture ();
+                        closePicture();
                     }
 
                 }
@@ -162,7 +214,7 @@ class Gallery {
                              </div>`
         } // close this.insertContent
 
-}
+} //close Class Gallery
 
 var artGallery = new Gallery();
-artGallery.init();
+artGallery.init('.container-gallery','gallery.json')
