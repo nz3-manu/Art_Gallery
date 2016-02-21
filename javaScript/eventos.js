@@ -106,7 +106,7 @@ class Gallery {
 
                                 </div>`;
 
-        //--- firts div (este es el que el usurai crea, se pasa el parametro que el usuario ponga)
+        //--- firts div (looking user parameter )
         var target = document.querySelector(this.selector);
         //--- insert html
         target.innerHTML = `${htmlRow} ${showInformation}`;
