@@ -22,7 +22,7 @@ class Gallery {
             this.selector = selector
             this.jsonPath = jsonPath
 
-
+            // looking what kind of device are using the user.
             if (window.screen.width >= initialLoad.desktop.resolution) {
                 this.numRows = 3;
             } else if (window.screen.width >= initialLoad.tablet.resolution) {
@@ -30,7 +30,7 @@ class Gallery {
             } else {
                 this.numRows = 1;
             }
-            // Json
+            // ajax request
             fetch(this.jsonPath).then(information => information.json(), e => {
                 console.log("Obtención fallida", e);
             }).then(information => {
@@ -42,7 +42,7 @@ class Gallery {
                     htmlRow = `${htmlRow} ${this.renderRow(row)}`;
                 }
                 this.currentIndex = i;
-                // event scroll
+                // scroll event
                 window.addEventListener('scroll', () => {
                     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                         var supLimit = this.currentIndex * 3;
@@ -50,10 +50,10 @@ class Gallery {
                             var infLimit = supLimit - 3;
                         var row = this.information.slice(infLimit, supLimit);
                         if (row.length > 0) {
-                          //creating div load.
+                          //creating text before load of the new 3 elements (Loading...)
                             var target = document.querySelector(this.selector);
                             var div = document.createElement("div");
-                            div.innerHTML = `<div class='load'> <p> Cargando... </p></div>`
+                            div.innerHTML = `<div class='load'> <p> Loading... </p></div>`
                             target.appendChild(div);
 
                             var htmlSingleRow = this.renderRow(row);
@@ -63,11 +63,11 @@ class Gallery {
                     }
                 });
                 this.information = information;
-                // call Render with  all the result of body
+                // call Render with  all the rows html result
                 this.render(htmlRow);
             });
         } // Close init
-        // function renderRow show the div before click event
+        // return the html for three thumbnail elements
     renderRow(row) {
         var sumObject = '';
         for (var i = 0; i < 3; i++) {
@@ -89,7 +89,7 @@ class Gallery {
 
     render(htmlRow) {
         var _this = this;
-        //---creating div of show information (wrapImgInfomation), and btn(next,prev  and close)
+        //--- insert div that contain button: prev, next and close.
         var showInformation = `<div id="wrapImgInfomation">
                                   <div class="wrapImgInfomation__btn">
                                       <div id='close' class="showImg__btnClose  showImg__btnClose--style"> <p>x</p> </div>
@@ -106,9 +106,9 @@ class Gallery {
 
                                 </div>`;
 
-        //--- firts div (looking user parameter )
+        //--- get root element using the user selector
         var target = document.querySelector(this.selector);
-        //--- insert html
+        //--- insert plugin html
         target.innerHTML = `${htmlRow} ${showInformation}`;
 
         //************************* Click Event, show the description and show big img *****************
@@ -118,12 +118,12 @@ class Gallery {
         var showImg = document.querySelector(".wrapImgInfomation__showImg");
         var showInfomation = document.getElementById('wrapImgInfomation');
         var arrayLength = this.information.length;
-        //---- Running inside of Array (boxInformationArray)
+        //---- add click event to all thumbnails elements
         for (var i = 0; i < boxInformationArray.length; i++) {
             var showDescription = boxInformationArray[i];
-            //--- Click Event,catch the position and insert the content
+            //--- Click Event,get the position and insert the content
             showDescription.onclick = function () {
-                //***** crearing variable id of box's event
+                //***** crearing variable id of thumbnails's event
                 var id = parseInt(this.id);
                 _this.insertContent(_this.information[id], showImg);
                 showInfomation.style.display = "block";
@@ -136,14 +136,13 @@ class Gallery {
                 // **************************** image prev and btn next ********************************************
                 //------ next image
                 var nextImg = document.getElementById('nextImg');
-                //Function --- Next image
                 nextImg.onclick = nextPicture;
 
                 // ----- previous image
                 var prevImg = document.getElementById('prevImg');
                 prevImg.onclick = prevPicture;
 
-                //******** KeyboardEvent ****************************
+                //******************************* KeyboardEvent ****************************
                 document.onkeydown = chars;
 
                 function chars(evento) {
@@ -153,18 +152,21 @@ class Gallery {
                 }
 
                 function caracterres(chars) {
+                  //right Arrow key
                     if (chars === 39) {
                         nextPicture();
                     }
+                      //left Arrow key
                     if (chars === 37) {
                         prevPicture();
                     }
+                    // esc key
                     if (chars === 27) {
                         closePicture();
                     }
 
                 }
-                //-- function event and Keyboard Next
+                //------- click event and Keyboard Next function handler
                 function nextPicture() {
                     id = id + 1;
                     if (id < arrayLength) {
@@ -174,7 +176,7 @@ class Gallery {
                         _this.insertContent(_this.information[id], showImg);
                     }
                 };
-                //-- function event and Keyboard Prev
+                //-- click event and Keyboard Prev function handler
                 function prevPicture() {
                     id = id - 1;
                     console.log(id);
@@ -185,7 +187,7 @@ class Gallery {
                         _this.insertContent(_this.information[id], showImg);
                     }
                 };
-                //-- function event and Keyboard Close
+                //-- click event and Keyboard Close function handler
                 function closePicture() {
                     showImg.querySelector(".showImg__temp").remove();
                     showInfomation.style.display = "none";
@@ -195,7 +197,7 @@ class Gallery {
         } // close of for loop
 
     }; // close render
-
+    
     insertContent(dataSource, target) {
             var name = dataSource.name;
             var artist = dataSource.artist;
